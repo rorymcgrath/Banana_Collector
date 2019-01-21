@@ -12,7 +12,7 @@ BUFFER_SIZE = int(1e5)
 BATCH_SIZE = 64
 UPDATE_EVERY = 4
 GAMMA = 0.99
-TAU = 0.5
+TAU = 1e-3
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class Agent():
@@ -48,13 +48,13 @@ class Agent():
 			action_values = self.local_qnetwork(state)
 		self.local_qnetwork.train()
 		if random.random() > epsilon:
-			return np.argmax(action_values.data.numpy())
+			return np.argmax(action_values.to(device).data.numpy())
 		else:
 			return random.randint(0, self.action_size-1)
 
 	def train_model_parameters(self, experiences):
 		states, actions, rewards, next_states, dones = experiences
-		Q_next_states = self.target_qnetwork(states).detach().max(1)[0].unsqueeze(1)
+		Q_next_states = self.target_qnetwork(next_states).detach().max(1)[0].unsqueeze(1)
 		Q_states = rewards + GAMMA*Q_next_states*(1-dones)
 	
 		Q_states_estimated = self.local_qnetwork(states).gather(1,actions)
