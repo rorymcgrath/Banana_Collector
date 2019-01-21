@@ -31,6 +31,7 @@ scores_window = deque(maxlen=100)
 scores = []
 
 eps = EPS_START
+success_score = 13
 for i_episode in range(1,1500):
 	env_info = env.reset(train_mode=True)[brain_name]
 	state = env_info.vector_observations[0]            
@@ -54,10 +55,10 @@ for i_episode in range(1,1500):
 	if i_episode % 100 == 0:
 		print('\rEpisode {} \tAverage Score: {:.2f} \tEpsilon: {:.5f}'.format(i_episode, np.mean(scores_window),eps))
 	
-	if np.mean(scores_window) >= 13:
+	if np.mean(scores_window) >= success_score:
 		print('Environment solved in {:d} episodes. Average Score: {:.2f} Saving model parameters.'.format(i_episode-100,np.mean(scores_window)))
 		torch.save(agent.local_qnetwork.state_dict(), 'checkpoint.pth')
-		break
+		success_score+=1
 
 with open('scores.pkl','wb') as f:
 	pickle.dump(scores,f)
