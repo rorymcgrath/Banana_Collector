@@ -7,7 +7,7 @@ import pickle
 MAX_T = 1000
 EPS_START = 1.0
 EPS_END = 0.01
-EPS_DECAY = 0.995
+EPS_DECAY = 0.998
 
 env = UnityEnvironment(file_name="../Banana.app")
 
@@ -49,8 +49,9 @@ for i_episode in range(1,5000):
 	eps = max(EPS_END,EPS_DECAY*eps)
 	scores_window.append(score)
 	scores.append(score)
+
 	if i_episode % 100 == 0:
-		print('\rEpisode {} \tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_window)))
+		print('\rEpisode {} \tAverage Score: {:.2f} \tEpsilon: {:.5f}'.format(i_episode, np.mean(scores_window),eps))
 	if np.mean(scores_window) >= 10:
 		print('Environment soled in {:d} episodes. Average Score: {:.2f} Saving model parameters.'.format(i_episode-100,np.mean(scores_window)))
 		torch.save(agent.local_qnetwork.state_dict(), 'checkpoint.pth')
