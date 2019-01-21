@@ -4,10 +4,10 @@ import numpy as np
 from collections import deque
 import pickle
 
-MAX_T = 1000
+MAX_T = 277 
 EPS_START = 1.0
 EPS_END = 0.01
-EPS_DECAY = 0.998
+EPS_DECAY = 0.995
 
 env = UnityEnvironment(file_name="../Banana.app")
 
