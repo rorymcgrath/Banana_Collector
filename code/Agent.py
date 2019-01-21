@@ -13,7 +13,7 @@ BATCH_SIZE = 64
 UPDATE_EVERY = 4
 GAMMA = 0.99
 TAU = 0.5
-
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class Agent():
 
@@ -23,8 +23,8 @@ class Agent():
 		random.seed(seed)
 		
 		#Q-Network
-		self.local_qnetwork = QNetwork(state_size, action_size, seed)
-		self.target_qnetwork = QNetwork(state_size, action_size, seed)
+		self.local_qnetwork = QNetwork(state_size, action_size, seed).to(device)
+		self.target_qnetwork = QNetwork(state_size, action_size, seed).to(device)
 		self.optimizer = optim.Adam(self.local_qnetwork.parameters(), lr=LEARNING_RATE)
 
 		#Replay Memory
@@ -42,21 +42,21 @@ class Agent():
 
 	
 	def get_action(self, state, epsilon=0):
-		state = torch.from_numpy(state).float().unsqueeze(0)
+		state = torch.from_numpy(state).float().unsqueeze(0).to(device)
 		self.local_qnetwork.eval()
 		with torch.no_grad():
 			action_values = self.local_qnetwork(state)
 		self.local_qnetwork.train()
 		if random.random() > epsilon:
-			return action_values.argmax().numpy()
+			return np.argmax(action_values.data.numpy())
 		else:
 			return random.randint(0, self.action_size-1)
 
 	def train_model_parameters(self, experiences):
 		states, actions, rewards, next_states, dones = experiences
 		Q_next_states = self.target_qnetwork(states).detach().max(1)[0].unsqueeze(1)
-		Q_states = rewards + self.GAMMA*Q_next_states*(1-dones)
-		
+		Q_states = rewards + GAMMA*Q_next_states*(1-dones)
+	
 		Q_states_estimated = self.local_qnetwork(states).gather(1,actions)
 		
 		loss = F.mse_loss(Q_states_estimated,Q_states)
@@ -66,5 +66,5 @@ class Agent():
 		self._copy_model_parameters()     
 
 	def _copy_model_parameters(self):
-		for target_param, local_param in zip(target_qnetwork.parameters,local_qnetwork.parameters):
-			target_param.data.copy_(self.TAU*local_param.data + (1-self.TAU) * target_param.data)
+		for target_param, local_param in zip(self.target_qnetwork.parameters(), self.local_qnetwork.parameters()):
+			target_param.data.copy_(TAU*local_param.data + (1-TAU) * target_param.data)
