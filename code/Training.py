@@ -10,7 +10,7 @@ EPS_START = 1.0
 EPS_END = 0.01
 EPS_DECAY = 0.995
 
-env = UnityEnvironment(file_name="../Banana.app")
+env = UnityEnvironment(file_name="../Banana.app",no_graphics=True)
 
 brain_name = env.brain_names[0]
 brain = env.brains[brain_name]
