@@ -77,5 +77,6 @@ You need only select the environment that matches your operating system:
 Follow the instructions in `Navigation.ipynb` for an explanation of how the code works. Navigate to the `code` directory and execute the following.
 
 ```bash
+conda activate drlnd
 jupyter notebook Navigation.ipynb
 ```
