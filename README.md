@@ -3,7 +3,7 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 [image2]: https://user-images.githubusercontent.com/10624937/42386929-76f671f0-8106-11e8-9376-f17da2ae852e.png "Kernel"
 
-# Project 1: Navigation
+# Banana Collector
 
 ### Introduction
 
@@ -27,10 +27,12 @@ This task is episodic, and in order to solve the environment, the agent must get
 
 ### Getting Started
 
+In order to get up and running with this codebase the following instructions have been provided.
 
 1. Clone this repository.
 
-2. Download the unity environment from one of the links below.  You need only select the environment that matches your operating system:
+2. Download the unity environment from one of the links below.  
+You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
@@ -40,7 +42,7 @@ This task is episodic, and in order to solve the environment, the agent must get
 
 2. Place the unzipped file in the root directory of this cloned repo.
 
-3. It is recommeded that you setup anaconda or conda so that you can run the Jupyter notebook and resolve any dependenies that gym or pytorch may have.
+3. It is recommeded that you setup anaconda or conda so that you can run the Jupyter notebook and resolve any dependencies that gym or pytorch may have.
 	1. Create (and activate) a new environment with Python 3.6.
 
 	- __Linux__ or __Mac__: 
@@ -57,24 +59,23 @@ This task is episodic, and in order to solve the environment, the agent must get
 	2. Follow the instructions in [this repository](https://github.com/openai/gym) to perform a minimal install of OpenAI gym.  
 		- Next, install the **classic control** environment group by following the instructions [here](https://github.com/openai/gym#classic-control).
 		- Then, install the **box2d** environment group by following the instructions [here](https://github.com/openai/gym#box2d).
-	
-	3. Clone the repository (if you haven't already!), and navigate to the `python/` folder.  Then, install several dependencies.
-	```bash
-	git clone https://github.com/udacity/deep-reinforcement-learning.git
-	cd deep-reinforcement-learning/python
-	pip install .
-	```
 
-	4. Create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `drlnd` environment.  
+	3. Create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `drlnd` environment.  
 	```bash
 	python -m ipykernel install --user --name drlnd --display-name "drlnd"
 	```
 
-	5. Before running code in a notebook, change the kernel to match the `drlnd` environment by using the drop-down `Kernel` menu. 
+	4. Before running code in a notebook, change the kernel to match the `drlnd` environment by using the drop-down `Kernel` menu. 
 
 	![Kernel][image2]
 
 
+	5. If you encounter any additional dependency issues, clone and run the following [python code](https://github.com/udacity/deep-reinforcement-learning/tree/master/python)
+
 ### Instructions
 
-Follow the instructions in `Navigation.ipynb` for an explanation of how the code works.
+Follow the instructions in `Navigation.ipynb` for an explanation of how the code works. Navigate to the `code` directory and execute the following.
+
+```bash
+jupyter notebook Navigation.ipynb
+```
