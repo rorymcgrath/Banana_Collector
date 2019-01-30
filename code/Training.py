@@ -32,7 +32,6 @@ agent = Agent(state_size,action_size,seed=0)
 
 scores_window = deque(maxlen=100)
 scores = []
-
 eps = EPS_START
 #Define the minimum aver score for success.
 success_score = 13
@@ -55,7 +54,6 @@ for i_episode in range(1,1500):
 	eps = max(EPS_END,EPS_DECAY*eps)
 	scores_window.append(score)
 	scores.append(score)
-
 	if i_episode % 100 == 0:
 		print('\rEpisode {} \tAverage Score: {:.2f} \tEpsilon: {:.5f}'.format(i_episode, np.mean(scores_window),eps))
 	
@@ -69,4 +67,3 @@ for i_episode in range(1,1500):
 with open('scores.pkl','wb') as f:
 	#Save the scores so that they can be visualised later.
 	pickle.dump(scores,f)
-
