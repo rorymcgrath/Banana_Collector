@@ -73,22 +73,51 @@ The ANN used for the agent consisted of an input layer of 37 nodes, one dense hi
 All activation functions were rectified linear units (ReLUs). 
 As we are not dealing with probabilities a softmax function on the output layer was not required.
 
-The following hyper-parameters were used to train the model
-\begin{itemize}
-	\item $\gamma$ = $0.99$
-	\item $\alpha$ = $5e^{-4}$
-	\item $\epsilon$ = 1.0 to 0.01 with a rate of decay of 0.995 per episode
-	\item Experience Replay
-	\begin{itemize}
-		\item Buffer Size = $1e^{5}$
-		\item Batch Size = $64$
-	\end{itemize}
-	\item Fixed Q 
-	\begin{itemize}
-		\item $\tau$ = $1e^{-3}$
-		\item Update Rate = every 4 time-steps 
-	\end{itemize}
-\end{itemize}
+The following hyper-parameters were used to train the model:
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Learning Updates}}\\
+	\hline
+	\textbf{Parameter} & \textbf{Value}\\
+	\hline
+	$\gamma$ & $0.99$\\
+	$\alpha$ & $5e^{-4}$\\
+	$\epsilon$ & 1.0 to 0.01 with a rate of decay of 0.995 per episode\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\begin{minipage}{.5\linewidth}
+\begin{tabular}{|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Experience Replay}}\\
+	\hline
+	\textbf{Parameter} & \textbf{Value}\\
+	\hline
+	Buffer Size & $1e^{5}$\\
+	Batch Size & $64$\\
+	\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+\begin{tabular}{|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Fixed Q}}\\
+	\hline
+	\textbf{Parameter} & \textbf{Value}\\
+	\hline
+		$\tau$ & $1e^{-3}$\\
+		Update Rate & every 4 time-steps \\
+	\hline
+\end{tabular}
+\end{minipage}
+\end{table}
 
 The model was trained for 1500 episodes. 
 After 1200 episodes the model achieved it's target of an average of +13 over 100 episodes.
