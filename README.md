@@ -8,6 +8,10 @@
 ### Introduction
 
 This project uses AI gym and a unity environment to train an agent to navigate around a large square environment and collect bananas.
+All code relating to the project can be found in the `code` directory.
+Trained weights for the ANN's have been saved to the `checkpoint.pth` file.
+A report has been created and placed in the `docs` folder. 
+This folder contains the .tex and .bib files used to generate the report along the generated .pdf report.
 
 ![Trained Agent][image1]
 
@@ -42,7 +46,7 @@ You need only select the environment that matches your operating system:
 
 2. Place the unzipped file in the root directory of this cloned repo.
 
-3. It is recommeded that you setup anaconda or conda so that you can run the Jupyter notebook and resolve any dependencies that gym or pytorch may have.
+3. It is recommended that you setup anaconda or conda so that you can run the Jupyter notebook and resolve any dependencies that gym or pytorch may have.
 	1. Create (and activate) a new environment with Python 3.6.
 
 	- __Linux__ or __Mac__: 
