@@ -7,9 +7,12 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\bibliography{References}
 
 \begin{document}
 \maketitle
+
 
 \section{Overview}
 For this project an agent was trained to navigate a large square world and collect bananas.
@@ -32,7 +35,7 @@ A agent is said to have 'solved' the environment if it can achieve a score of +1
 
 \section{Proposed Methods}
 \label{methods}
-In order to solve this environment Deep Q-Networks \ref{deep_q_networks} were implemented.
+In order to solve this environment Deep Q-Networks \cite{deep_q_networks} were implemented.
 In general, Deep Q-Networks are used as a functional approximation  when estimating the optimal action-value function $Q_*$.
 Instead of performing a table lookup, which does not scale well with the action space and state space, a neural network is trained
 on past experiences to estimate the action-value function for the current state and actions.
@@ -62,7 +65,7 @@ Firstly, as we view (s, a, r, s', a) tuples as they are created,
 given the nature of the environment they can be highly correlated.
 This can cause action values to oscillate or diverge catastrophically.
 Secondly, since we are updating a guess with a guess this can lead to harmful correlations if we updated the ANN weights on each time step.
-To combat these issues Experience Replay\ref{experience_replay} and Fixed Q-Targets\ref{fixed_q_targets} were implemented.
+To combat these issues Experience Replay\cite{experience_replay} and Fixed Q-Targets\cite{deep_q_networks} were implemented.
 
 \section{Results}
 
@@ -124,7 +127,8 @@ After 1200 episodes the model achieved it's target of an average of +13 over 100
 A plot of the reward verses episode number is given in [Fig \ref{results}].
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{./img/Results.png}
+	\centering
+	\includegraphics[width=0.8\linewidth]{./img/Results.png}
 	\caption{Training results}
 	\label{results}
 \end{figure}
@@ -136,15 +140,18 @@ There are several improvements that could be implemented to decrease training ti
 A hyper-parameter optimisation technique such as grid search could be implemented to help converge on good choices of the parameters 
 specified above. Ideally this would be run on a gpu server.
 
-The Replay Buffer could be updated to implement prioritised experience replay \ref{per_paper}. 
+The Replay Buffer could be updated to implement prioritised experience replay \cite{per_paper}. 
 The key idea here is that 'important' transitions would be sampled more frequently than unimportant ones. 
 The 'important' of transition is determined by the magnitude of it's temporal-difference error.
 This should allow the agent to learn more efficiently. 
 Given that we are no longer uniformly sampling from the experiences importance sampling will have to be added to calculate the impact of each weight when updating.
 
-The agents learning method could be updated to implement Double DQN \ref{ddqn_paper}. 
+The agents learning method could be updated to implement Double DQN \cite{ddqn_paper}. 
 Currently in the agent uses the same value to select and action and then evaluate that action.
 This can lead to over optimistic value estimates.
 To overcome this the action selection can be decoupled from the evaluation.
 In the case of our implementation we can partially decoupling the action selection and evaluation by selection the action using the local q network and evaluating the action on the target Q network.
+
+
+\printbibliography
 \end{document}
