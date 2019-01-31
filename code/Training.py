@@ -12,9 +12,10 @@ MAX_T = 277
 EPS_START = 1.0
 EPS_END = 0.01
 EPS_DECAY = 0.995
+NO_GRAPHICS = True
 
 #Initlise the environment, np_graphics are set to true to disable UI window.
-env = UnityEnvironment(file_name="../Banana.app",no_graphics=True)
+env = UnityEnvironment(file_name="../Banana.app",no_graphics=NO_GRAPHICS)
 brain_name = env.brain_names[0]
 brain = env.brains[brain_name]
 
@@ -35,6 +36,7 @@ scores = []
 eps = EPS_START
 #Define the minimum aver score for success.
 success_score = 13
+print('Starting training...')
 for i_episode in range(1,1500):
 	env_info = env.reset(train_mode=True)[brain_name]
 	state = env_info.vector_observations[0]            
