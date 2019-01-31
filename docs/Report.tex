@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage[backend=bibtex,style=numeric]{biblatex}
 \bibliography{References}
+\usepackage[table]{xcolor}
 
 \begin{document}
 \maketitle
@@ -24,13 +25,19 @@ of objects around the agent's forward direction.
 The action was able to perform 4 distance actions:
 
 \begin{center}
-\begin{itemize}
-\item 0 - move forward
-\item 1 - move backward
-\item 2 - turn left
-\item 3 - turn right
-\end{itemize}
+    \rowcolors{2}{gray}{white}
+    \begin{tabular}{|c|l|}
+        \hline
+        \textbf{Action Value} & \textbf{Description} \\
+        \hline
+		0 & move forward\\
+		1 & move backward\\
+        2 & turn left\\
+        3 & turn right\\
+		\hline
+	\end{tabular}
 \end{center}
+
 The given task to solve is episodic. 
 A agent is said to have 'solved' the environment if it can achieve a minimum score of +13 over 100 consecutive episodes.
 
@@ -80,11 +87,12 @@ As we are not dealing with probabilities a Softmax function on the output layer 
 The following hyper-parameters were used to train the agent:
 
 
-\begin{table}[h!]
+\begin{table}[h!t]
 \begin{center}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|l|}
 	\hline
 	\multicolumn{2}{|c|}{\textbf{Learning Updates}}\\
+	\hline
 	\hline
 	\textbf{Parameter} & \textbf{Value}\\
 	\hline
@@ -96,11 +104,12 @@ The following hyper-parameters were used to train the agent:
 \end{center}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[h!t]
 \begin{minipage}{.5\linewidth}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|l|}
 	\hline
 	\multicolumn{2}{|c|}{\textbf{Experience Replay}}\\
+	\hline
 	\hline
 	\textbf{Parameter} & \textbf{Value}\\
 	\hline
@@ -110,9 +119,10 @@ The following hyper-parameters were used to train the agent:
 \end{tabular}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|l|}
 	\hline
 	\multicolumn{2}{|c|}{\textbf{Fixed Q}}\\
+	\hline
 	\hline
 	\textbf{Parameter} & \textbf{Value}\\
 	\hline
@@ -123,7 +133,7 @@ The following hyper-parameters were used to train the agent:
 \end{minipage}
 \end{table}
 
-The model was trained for 1500 episodes. 
+The model was trained for 1400 episodes. 
 After 531 episodes the model achieved it's target of an average of +13 over 100 episodes.
 A plot of the reward verses episode number is given in [Fig \ref{results}].
 
