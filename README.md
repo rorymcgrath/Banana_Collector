@@ -1,7 +1,7 @@
 [//]: # (Image References)
 
 [image1]: https://user-images.githubusercontent.com/1038278/53906857-da3e1900-4043-11e9-8c76-51dd6a2b0761.gif "Trained Agent"
-[image2]: https://user-images.githubusercontent.com/10624937/42386929-76f671f0-8106-11e8-9376-f17da2ae852e.png "Kernel"
+[image2]: https://user-images.githubusercontent.com/1038278/53953327-f042ec80-40ca-11e9-8d06-660fc454bcce.png "Kernel"
 
 # Banana Collector
 
